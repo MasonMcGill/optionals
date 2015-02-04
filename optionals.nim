@@ -17,6 +17,8 @@ type Optional*[Value] = object
 proc something*[Value](val: Value): Optional[Value] {.noInit.} =
   ## Construct an ``Optional[Value]`` initialized with ``val``.
   ##
+  ## Example:
+  ##
   ## .. code:: nim
   ##
   ##   let opt = something "my-value"
@@ -28,6 +30,8 @@ proc something*[Value](val: Value): Optional[Value] {.noInit.} =
 proc nothing*(Value: typedesc): auto {.noInit.} =
   ## Construct an ``Optional[Value]`` without a value.
   ##
+  ## Example:
+  ##
   ## .. code:: nim
   ##
   ##   let opt = nothing string
@@ -37,6 +41,8 @@ proc nothing*(Value: typedesc): auto {.noInit.} =
 
 converter toOptional*[Value](val: Value): Optional[Value] {.noInit.} =
   ## (Implicitly) convert ``val`` to ``something(val)``.
+  ##
+  ## Example:
   ##
   ## .. code:: nim
   ##
@@ -50,6 +56,8 @@ converter toOptional*[Value](val: Value): Optional[Value] {.noInit.} =
 proc `==`*[Value](opt0, opt1: Optional[Value]): bool {.noInit.} =
   ## Test whether two optional values either (1) both have no value or (2) both
   ## have equal values.
+  ##
+  ## Example:
   ##
   ## .. code:: nim
   ##
@@ -66,6 +74,8 @@ template map*[Value](opt: Optional[Value], op: expr): expr =
   ## the operation ``op`` applied to ``opt.value``; otherwise, return
   ## ``nothing``, of the appropriate type.
   ##
+  ## Example:
+  ##
   ## .. code:: nim
   ##
   ##   assert something(1.0).map(`-`) == something(-1.0)
@@ -78,6 +88,8 @@ template map*[Value](opt: Optional[Value], op: expr): expr =
 
 proc `$`*[Value](opt: Optional[Value]): string {.noInit.} =
   ## Return a string in the form ``"something(...)"`` or ``"nothing(...)"``.
+  ##
+  ## Example:
   ##
   ## .. code:: nim
   ##
