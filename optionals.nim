@@ -1,3 +1,6 @@
+# Copyright (c) 2015 Mason McGill
+# MIT License - See "license.txt" for details.
+
 ## The ``optionals`` module provides `option types
 ## <http://en.wikipedia.org/wiki/Option_type>`_ for representing entities whose
 ## value may be unknown or nonexistent. View the source
