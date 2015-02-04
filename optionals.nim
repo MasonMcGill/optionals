@@ -1,6 +1,7 @@
 ## The ``optionals`` module provides `option types
 ## <http://en.wikipedia.org/wiki/Option_type>`_ for representing entities whose
-## value may be unknown or nonexistent.
+## value may be unknown or nonexistent. View the source
+## `here <https://github.com/MasonMcGill/optionals>`_.
 
 import typetraits
 
