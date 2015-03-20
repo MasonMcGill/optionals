@@ -1,3 +1,4 @@
-nimcache/
-optionals
-*.html
+**/nimcache/
+**/test
+**/optionals
+**/*.html
