@@ -12,4 +12,4 @@ nimble install optionals
 
 Usage
 -----
-Please refer to the documentation [here](http://www.vision.caltech.edu/~mmcgill/optionals.html).
+Please refer to the documentation [here](http://www.vision.caltech.edu/~mmcgill/optionals/index.html).
