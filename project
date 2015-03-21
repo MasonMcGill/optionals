@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+'''
+Compile, test, and/or publish the Nim optionals module.
+'''
+from argparse import ArgumentParser
+from subprocess import call, check_output
+
+DOC_SITE = 'mmcgill@vision.caltech.edu:public_html/optionals'
+NIM_FLAGS = ('--parallelBuild:1 --warning[Deprecated]:off ' +
+             '--verbosity:0 --path:source')
+
+def shell(cmd):
+    call(cmd, shell=True)
+
+def subshell(cmd):
+    return check_output(cmd, shell=True)
+
+parser = ArgumentParser(description=__doc__)
+parser.add_argument('command', help='"compile", "test", or "publish"')
+command = parser.parse_args().command
+
+if command == 'compile':
+    shell('nim c -r ' + NIM_FLAGS + ' source/*.nim')
+elif command == 'test':
+    shell('nim c -r ' + NIM_FLAGS + ' tests/*.nim')
+elif command == 'doc':
+    shell('nim doc -o:index.html ' + NIM_FLAGS + ' source/*.nim')
+elif command == 'publish':
+    git_status = subshell('git status --porcelain')
+    if len(git_status) > 0:
+        print('Publishing did not succeed:')
+        shell('git status')
+        exit()
+    shell('nim doc -o:index.html ' + NIM_FLAGS + ' source/*.nim')
+    shell('git push')
+    shell('scp index.html ' + DOC_SITE)
+    print('Publishing succeeded.')
+else:
+    parser.print_help()
