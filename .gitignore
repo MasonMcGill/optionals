@@ -1,4 +1,4 @@
+binary/
 **/nimcache/
-**/test
-**/optionals
 **/*.html
+**/.DS_Store
